@@ -2,7 +2,7 @@
 Boggle is a word search game in which players try to find as many words as possible using adjacent letters in a limited time
 
 ## Demo
-![boggle game](https://raw.githubusercontent.com/isaurssaurav/boggle-react-ruby-on-rails/master/app/assets/images/demo.gif)
+![boggle game](https://raw.githubusercontent.com/isaurssaurav/boggle-react-ruby-on-rails/master/app/assets/images/demo2.gif)
 
 ## Installation 
 ```sh
