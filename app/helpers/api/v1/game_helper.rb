@@ -57,21 +57,17 @@ module Api::V1::GameHelper
             }      
         end
           
-        {
-            status:"SUCCESS",
+        url = 'https://od-api.oxforddictionaries.com/api/v2/entries/en-gb/' + word + '?fields=pronunciations&strictMatch=false'
+        request = HTTParty.get(url, headers: {
+            app_id: 'd49e7b28',
+            app_key: '97f0dc054db34a9357ff257957520cc4'
+          })
+        request.success? ? {
+            status:"SUCCESS"
+        } :  {
+            status:"ERROR",
             message:"😢 "+ word +' is not a valid word'
         }
-        # url = 'https://od-api.oxforddictionaries.com/api/v2/entries/en-gb/' + word + '?fields=pronunciations&strictMatch=false'
-        # request = HTTParty.get(url, headers: {
-        #     app_id: 'd49e7b28',
-        #     app_key: '97f0dc054db34a9357ff257957520cc4'
-        #   })
-        # request.success? ? {
-        #     status:"SUCCESS"
-        # } :  {
-        #     status:"ERROR",
-        #     message:"😢 "+ word +' is not a valid word'
-        # }
     end
     
     def validate_word_and_its_postiton(board,word)
@@ -151,7 +147,7 @@ module Api::V1::GameHelper
         cube[random_index]
     end
     
-    # old ways when frontend pass word with position
+    # Old way -> when frontend passed word with positions
     # check if the second_position is a possible direction/position to the first postion
     # def validate_two_positions(f_posiiton,s_position)
     #     is_valid_position = false
