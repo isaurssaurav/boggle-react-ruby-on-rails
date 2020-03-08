@@ -17,17 +17,21 @@ function Board(props: ITimerProps) {
     return (
         board.map((row, r) => {
             const blockRow = row.map((col, c) => {
-                return <span className={`${compareTwoArray(historyPositions, [r, c]).contains ? 'block green-color' : 'block'}
-            ${ compareTwoArray(canBeVisitedCubes, [r, c]).contains && isMouseInsideBoard ? 'can' : ''}`}
-                    onClick={() => {
-                        if (isFirstMove ||
-                            compareTwoArray(canBeVisitedCubes, [r, c]).contains ||
-                            compareTwoArray(historyPositions, [r, c]).contains
-                        ) {
-                            handleClick(r, c)
-                        }
-                    }}
-                > {col}</span>
+                return (
+                    <span className={`
+                            ${compareTwoArray(historyPositions, [r, c]).contains ? 'block green-color' : 'block'}
+                            ${ compareTwoArray(canBeVisitedCubes, [r, c]).contains && isMouseInsideBoard ? 'can' : ''}
+                        `}
+                        key={`cube-${c}`}
+                        onClick={() => {
+                            if (isFirstMove ||
+                                compareTwoArray(canBeVisitedCubes, [r, c]).contains ||
+                                compareTwoArray(historyPositions, [r, c]).contains
+                            ) {
+                                handleClick(r, c)
+                            }
+                        }}
+                    > {col}</span>)
             })
             return <>{blockRow}</>
         })

@@ -5,6 +5,7 @@ import { showError } from '../utils/notify';
 export default function MainMenu() {
 
     const TITLE = [['B', 'O', 'G', 'G', 'L', 'E']];
+
     return (
         <div className="game-container main-menu">
             <div className="null-container">
@@ -14,8 +15,9 @@ export default function MainMenu() {
                 < div className="board" id="board" style={{ width: "600px" }}>
                     {
                         TITLE.map((row) => {
-                            const blockRow = row.map((col) => {
+                            const blockRow = row.map((col, c) => {
                                 return <span className={'block-title'}
+                                    key={`cube-${c}`}
                                     onClick={() => {
                                         showError('Click play to start')
                                     }}

@@ -279,3 +279,7 @@ transition: all ease 0.5s;
      margin: 0 !important;
     line-height: normal !important;
   }
+  .validating{
+    pointer-events: none;
+    opacity: 0.5;
+  }

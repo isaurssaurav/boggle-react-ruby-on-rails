@@ -18,8 +18,6 @@ export default function HowToPlay() {
                 </div>
                 <ul>
                     <li><Link to="/">Go Back</Link></li>
-
-
                 </ul>
 
             </div>

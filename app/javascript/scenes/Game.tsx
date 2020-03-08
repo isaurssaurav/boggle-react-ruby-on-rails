@@ -47,7 +47,6 @@ const Home = () => {
 
     const [scores, setScores] = useState<Array<IScore>>([]);
 
-
     /**
      * Directions and Time for game is called from backend 'initializeGame' API
      */
@@ -168,10 +167,17 @@ const Home = () => {
             routeHistory.push('/')
         }
     }
-    const _handleKeyup = (event) => {
+    const _handleKeyup = async (event) => {
 
-        if (event.code === "Enter" || event.code === "NumpadEnter") {
-            _handleSubmit()
+        if ((event.code === "Enter" || event.code === "NumpadEnter") && !loading) {
+            try {
+                setLoading(true)
+                await _handleSubmit()
+            } catch (e) {
+                e.response && e.response.data && showError(e.response.data.message)
+            } finally {
+                setLoading(false)
+            }
         }
         if (event.code === "Escape") {
             _resetGameState()
@@ -183,9 +189,7 @@ const Home = () => {
     const _handleSubmit = async () => {
 
         if (word) {
-
             try {
-
                 if (word.length >= 3) {
                     if (ifArraysObjectKeyContains(word, scores)) {
                         showError(`👻 ${word} is already scored`)
@@ -207,7 +211,7 @@ const Home = () => {
         }
     }
 
-    if (loading) {
+    if (loading && time === 0) {
         return (<>LOADING...</>)
     }
 
@@ -215,54 +219,54 @@ const Home = () => {
         <>
             <div className="game-container">
                 {
-                    time > 0 ?
-                        <>
-                            <div className="null-container">
-                                <div className="main-menu">
-                                    <ul className="game-menu">
-                                        <li><a onClick={_exit}>EXIT</a></li>
-                                        <li className="tips"><a >TIPS</a></li>
-                                        <li className="tips"><a >Press Enter to submit</a></li>
-                                        <li className="tips"><a >Press ESC to cancel selected word</a></li>
-                                        <li className="tips"><a >Click Rotate button 🔄 to rotate board</a></li>
-                                        <li className="tips"><a >Click the selected cube to unselect the cube</a></li>
+                    time > 0 &&
+                    <>
+                        <div className="null-container">
+                            <div className="main-menu">
+                                <ul className="game-menu">
+                                    <li><a onClick={_exit}>EXIT</a></li>
+                                    <li className="tips"><a >TIPS</a></li>
+                                    <li className="tips"><a >Press Enter to submit</a></li>
+                                    <li className="tips"><a >Press ESC to cancel selected word</a></li>
+                                    <li className="tips"><a >Click Rotate button 🔄 to rotate board</a></li>
+                                    <li className="tips"><a >Click the selected cube to unselect the cube</a></li>
 
-                                    </ul>
-                                </div>
-
+                                </ul>
                             </div>
-                            <div className="board-container">
-                                < div className="board" id="board">
-                                    <Board
-                                        board={board}
-                                        canBeVisitedCubes={canBeVisitedCubes}
-                                        historyPositions={historyPositions}
-                                        isMouseInsideBoard={isMouseInsideBoard}
-                                        isFirstMove={isFirstMove}
-                                        handleClick={handleClick}
-                                    />
-                                </div>
-                                <button onClick={_rotateBoard} className="rotate-button" title="Rotate Board">🔄</button>
-
-                                <div className="submit-container">
-                                    <input onChange={handleChangeInput} className="word-box" value={word} placeholder="WORD"></input>
-                                </div>
-                                <Timer
-                                    time={time}
+                        </div>
+                        <div className={"board-container " + ((loading) ? "validating" : "")}>
+                            < div className="board" id="board">
+                                <Board
+                                    board={board}
+                                    canBeVisitedCubes={canBeVisitedCubes}
+                                    historyPositions={historyPositions}
+                                    isMouseInsideBoard={isMouseInsideBoard}
+                                    isFirstMove={isFirstMove}
+                                    handleClick={handleClick}
                                 />
-                            </div></> : ""
+                            </div>
+                            <button onClick={_rotateBoard} className="rotate-button" title="Rotate Board">🔄</button>
+                            <div className="submit-container">
+                                <input onChange={handleChangeInput} className="word-box" value={word} placeholder="WORD"></input>
+                            </div>
+
+                            <Timer
+                                time={time}
+                            />
+
+                        </div>
+                    </>
                 }
                 <div className="score-container">
-                    <ScoreBoard
-                        scores={scores}
-                    />
+                    <ScoreBoard scores={scores} />
                     {
-                        time === 0 ? <div className="main-menu">
+                        time === 0 &&
+                        <div className="main-menu">
                             <ul>
                                 <li> <Link to="/">GO TO MAIN MENU</Link></li>
                                 <li><a href="javascript:void(0)" onClick={() => window.location.reload(false)} >PLAY AGAIN</a></li>
                             </ul>
-                        </div> : ""
+                        </div>
                     }
                 </div>
             </div>

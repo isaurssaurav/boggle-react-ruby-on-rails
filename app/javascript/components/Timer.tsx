@@ -5,6 +5,7 @@ interface ITimerProps {
 }
 function Timer(props: ITimerProps) {
     let time = secondsToMs(props.time);
+    // timing loader below time
     let width = (1 / 120) * props.time * 100;
     return (
         <>

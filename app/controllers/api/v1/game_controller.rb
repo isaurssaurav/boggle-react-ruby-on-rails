@@ -30,18 +30,18 @@ class Api::V1::GameController < ApplicationController
 
 
   def submit_word
-    @request = JSON.parse(request.raw_post)
-    @result = helpers::submit_word(@request['board'],@request['word'])
-    
-    if @result[:status] == 'SUCCESS'
-      render json: {
-        word:@request['word'],
-        score:@request['word'].length
-      }
-    else
-      render json:{message: @result[:message] }, status: :bad_request 
+      @request = JSON.parse(request.raw_post)
+      @result = helpers::submit_word(@request['board'],@request['word'])
+      
+      if @result[:status] == 'SUCCESS'
+        render json: {
+          word:@request['word'],
+          score:@request['word'].length
+        }
+      else
+        render json:{message: @result[:message] }, status: :bad_request 
+      end
     end
-  end
 
   
 end

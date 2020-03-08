@@ -12,9 +12,9 @@ export default class ScoreBoard extends React.PureComponent<IScoreBoardProps>{
             <h2>Score</h2>
             <ul>
                 {
-                    scores.length > 0 && scores.map((score: IScore) => {
+                    scores.length > 0 && scores.map((score: IScore, idx: number) => {
                         totalScore += score.score
-                        return <li><span>{score.word}</span> <span> {score.score}</span></li>
+                        return <li key={`score-${idx}`}><span>{score.word}</span> <span> {score.score}</span></li>
                     })
                 }
                 <li className="total-score">{totalScore}</li>
