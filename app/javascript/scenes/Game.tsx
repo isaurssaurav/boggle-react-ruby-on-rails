@@ -176,10 +176,8 @@ const Home = () => {
         if (event.code === "Escape") {
             _resetGameState()
         }
-
-
-
     }
+
     useEventListener('keydown', _handleKeyup);
 
     const _handleSubmit = async () => {
@@ -221,23 +219,13 @@ const Home = () => {
                         <>
                             <div className="null-container">
                                 <div className="main-menu">
-                                    <ul style={{ textAlign: "left", margin: "0", lineHeight: "normal" }}>
+                                    <ul className="game-menu">
                                         <li><a onClick={_exit}>EXIT</a></li>
-                                        <li style={{
-                                            fontSize: "10px"
-                                        }}><a >TIPS</a></li>
-                                        <li style={{
-                                            fontSize: "10px"
-                                        }}><a >Press Enter to submit</a></li>
-                                        <li style={{
-                                            fontSize: "10px"
-                                        }}><a >Press ESC to cancel selected word</a></li>
-                                        <li style={{
-                                            fontSize: "10px"
-                                        }}><a >Click Rotate button 🔄 to rotate board</a></li>
-                                        <li style={{
-                                            fontSize: "10px"
-                                        }}><a >Click the selected cube to unselect the cube</a></li>
+                                        <li className="tips"><a >TIPS</a></li>
+                                        <li className="tips"><a >Press Enter to submit</a></li>
+                                        <li className="tips"><a >Press ESC to cancel selected word</a></li>
+                                        <li className="tips"><a >Click Rotate button 🔄 to rotate board</a></li>
+                                        <li className="tips"><a >Click the selected cube to unselect the cube</a></li>
 
                                     </ul>
                                 </div>
@@ -252,7 +240,6 @@ const Home = () => {
                                         isMouseInsideBoard={isMouseInsideBoard}
                                         isFirstMove={isFirstMove}
                                         handleClick={handleClick}
-
                                     />
                                 </div>
                                 <button onClick={_rotateBoard} className="rotate-button" title="Rotate Board">🔄</button>

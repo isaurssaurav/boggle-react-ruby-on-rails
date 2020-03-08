@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { showError } from '../utils/notify';=
+import { showError } from '../utils/notify';
 
 export default function MainMenu() {
 

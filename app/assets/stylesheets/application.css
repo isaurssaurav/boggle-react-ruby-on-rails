@@ -270,3 +270,12 @@ transition: all ease 0.5s;
     display: block;
     width: 100%;
   }
+
+  .tips{
+    font-size: 10px;
+  }
+  .game-menu{
+    text-align: left !important;
+     margin: 0 !important;
+    line-height: normal !important;
+  }
