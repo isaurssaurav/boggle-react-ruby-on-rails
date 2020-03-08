@@ -3,12 +3,12 @@ import { compareTwoArray } from '../utils/helper';
 
 
 interface ITimerProps {
-    board: any;
-    canBeVisitedCubes: any;
-    historyPositions: any;
-    isMouseInsideBoard: any;
-    isFirstMove: any;
-    handleClick: any
+    board: Array<Array<string>>;
+    canBeVisitedCubes: Array<Array<number>>;
+    historyPositions: Array<Array<number>>;
+    isMouseInsideBoard: boolean;
+    isFirstMove: boolean;
+    handleClick: (row: number, col: number) => void
 }
 
 function Board(props: ITimerProps) {
