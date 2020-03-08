@@ -23,8 +23,6 @@ $ rails test -v
 ```
 ## Tech
 
-Dillinger uses a number of open source projects to work properly:
-
 * Ruby - 2.6.1
 * Rails - ~> 6.0.2
 * React + Typescript 
