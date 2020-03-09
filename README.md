@@ -15,7 +15,7 @@ $ yarn
 ```sh
 $ rails s
 ```
-Point your browser to `http://localhost:3300`. By default on port `3300`.
+Point your browser to `http://localhost:3000`. By default on port `3000`.
 
 ## Test
 ```sh
