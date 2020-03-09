@@ -4,6 +4,8 @@ class GameHelperTest < ActionView::TestCase
     test "should rotate the board clock-wise" do
 
         assert_equal [["T","G","C","U"],["A","I","E","I"],["E","S","L","K"],["L","Y","S","O"]], rotate_board([["U","I","K","O"],["C","E","L","S"],["G","I","S","Y"],["T","A","E","L"]])
+        # new board
+        assert_equal [["D","D","N","R"],["Y","A","N","A"],["Q","E","B","A"],["M","T","E","A"]], rotate_board([["R","A","A","A"],["N","N","B","E"],["D","A","E","T"],["D","Y","Q","M"]])
 
     end
 
@@ -22,7 +24,7 @@ class GameHelperTest < ActionView::TestCase
         assert_equal true , validate_word_and_its_postiton([["E","R","B","A"],["Q","A","T","Y"],["E","P","E","W"],["R","T","N","E"]],"RAT")
         assert_equal false , validate_word_and_its_postiton([["E","R","B","A"],["Q","A","T","Y"],["E","P","E","W"],["R","T","N","E"]],"TEMPORARY")
 
-        #new board
+        # new board
         assert_equal true , validate_word_and_its_postiton([["E","E","H","T"],["R","E","K","A"],["N","O","H","Y"],["B","C","D","N"]],"BONE")
         assert_equal false , validate_word_and_its_postiton([["E","E","H","T"],["R","E","K","A"],["N","O","H","Y"],["B","C","D","N"]],"BOOM")
 
